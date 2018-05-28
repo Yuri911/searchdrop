@@ -7,7 +7,7 @@ var fs = require("fs");
 var request = require('request');
 var http = require('http');
 
-var token = "541725334:AAFpyB_V4dqL_sVqMJ9_42-jLtpPJLhy8iY";
+var token = "541725334:AAGpTFXfqgD_eFCH80K8wIYyKcKET6a1DzM";
 var bot = new TelegramBot(token, {polling: true});
 
 var vk = new VK({
