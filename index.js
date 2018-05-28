@@ -7,7 +7,7 @@ var fs = require("fs");
 var request = require('request');
 var http = require('http');
 
-var token = "541725334:AAFwVWFZWTMEa_1gAHrkLmD5nlWFMXl8ao0";
+var token = "541725334:AAFpyB_V4dqL_sVqMJ9_42-jLtpPJLhy8iY";
 var bot = new TelegramBot(token, {polling: true});
 
 var vk = new VK({
@@ -147,7 +147,7 @@ bot.on('message', function(msg){
 
                       var attachments = "photo"+owner_id+"_"+photo_id;
 
-                      var params = {'owner_id':-120434623, 'from_group': 1, 'attachments': attachments, 'message' : msg.caption + "\nОбращаться в Telegram: t.me/" + msg.from.username + " ✅📢"};
+                      var params = {'owner_id':-120434623, 'from_group': 1, 'attachments': attachments, 'message' : msg.caption + "\nОбращаться в Telegram: t.me/" + msg.from.username + " ✅📢\n" + "Наш чат в Telegrame: t.me/podslushano_u_prodavtsov"};
                       vk.request('wall.post', params, function(dat){
                         bot.sendMessage(chatId, "👏Заявка добавлена☝️☝️☝️\nПосмотреть можно в группе👉 vk.com/podslushano_u_prodavtsov");
                         fs.unlinkSync(path+filename);
