@@ -152,7 +152,7 @@ bot.on('message', function(msg){
                         bot.sendMessage(chatId, "👏Заявка добавлена☝️☝️☝️\nПосмотреть можно в группе👉 vk.com/podslushano_u_prodavtsov");
                       });
                        fs.readdirSync(path).forEach(file => {
-                         fs.unlinkSync(file);
+                         fs.unlinkSync(path + file);
                        })
                     });
                 });
