@@ -151,13 +151,14 @@ bot.on('message', function(msg){
                       vk.request('wall.post', params, function(dat){
                         bot.sendMessage(chatId, "👏Заявка добавлена☝️☝️☝️\nПосмотреть можно в группе👉 vk.com/podslushano_u_prodavtsov");
                       });
+                       fs.readdirSync(path).forEach(file => {
+                         fs.unlinkSync(file);
+                       })
                     });
                 });
               })
               //fs.unlinkSync(path+filename);
-              fs.readdirSync(path).forEach(file => {
-                fs.unlinkSync(file);
-              })
+              
             }
             setTimeout(dir, 5000);
           }
