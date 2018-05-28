@@ -7,7 +7,7 @@ var fs = require("fs");
 var request = require('request');
 var http = require('http');
 
-var token = "541725334:AAH4_h65PqGYmJfDUGaM9KXWNpfI0Wsh54A";
+var token = "541725334:AAFpyB_V4dqL_sVqMJ9_42-jLtpPJLhy8iY";
 var bot = new TelegramBot(token, {polling: true});
 
 var vk = new VK({
@@ -150,10 +150,13 @@ bot.on('message', function(msg){
                       var params = {'owner_id':-120434623, 'from_group': 1, 'attachments': attachments, 'message' : msg.caption + "\nОбращаться в Telegram: t.me/" + msg.from.username + " ✅📢\n" + "Наш чат в Telegrame: t.me/podslushano_u_prodavtsov"};
                       vk.request('wall.post', params, function(dat){
                         bot.sendMessage(chatId, "👏Заявка добавлена☝️☝️☝️\nПосмотреть можно в группе👉 vk.com/podslushano_u_prodavtsov");
-                        fs.unlinkSync(path+filename);
                       });
                     });
                 });
+              })
+              //fs.unlinkSync(path+filename);
+              fs.readdirSync(path).forEach(file => {
+                fs.unlinkSync(file);
               })
             }
             setTimeout(dir, 5000);
