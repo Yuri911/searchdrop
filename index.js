@@ -35,7 +35,7 @@ bot.on('message', function(msg){
     case "/start":
     case "Продолжить регистрацию":
 
-      if (msg.from.username != undefined) {
+      if (msg.from.username != undefined && msg.from.username != "undefined" && msg.from.username != "") {
         var keyboard = {
             reply_markup: JSON.stringify({
               keyboard: [
