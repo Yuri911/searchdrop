@@ -95,6 +95,7 @@ bot.on('message', function(msg){
       break;
     case "🔎Ищу":
     case "Ищу":
+     case "ищу":
       bot.sendMessage(chatId, "1️⃣ Вставьте фото. \n2️⃣ Под фото укажите описание❗️").then(()=>{
         bot.once("photo", (msg) => {
           if(msg.caption != null) {
