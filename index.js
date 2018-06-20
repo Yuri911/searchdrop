@@ -181,7 +181,7 @@ bot.on('message', function(msg){
 
                       var params = {'owner_id':-167596361, 'from_group': 1, 'attachments': attachments, 'message' : msg.caption + "\nОбращаться в Telegram: t.me/" + msg.from.username + " ✅📢\n" + "Наш чат в Telegrame: t.me/podslushano_u_prodavtsov"};
                       vk.request('wall.post', params, function(dat){
-                        bot.sendMessage(chatId, "👏Заявка добавлена☝️☝️☝️\nПосмотреть можно в группах👉 \nvk.com/podslushano_u_prodavtsov\nvk.com/botdropsearch");
+                        bot.sendMessage(chatId, "👏Заявка добавлена☝️☝️☝️\nПосмотреть можно в группе👉 vk.com/podslushano_u_prodavtsov");
                       });
                       fs.readdirSync(path).forEach(file => {
                         fs.unlinkSync(path + file);
