@@ -149,13 +149,46 @@ bot.on('message', function(msg){
 
                       var params = {'owner_id':-120434623, 'from_group': 1, 'attachments': attachments, 'message' : msg.caption + "\nОбращаться в Telegram: t.me/" + msg.from.username + " ✅📢\n" + "Наш чат в Telegrame: t.me/podslushano_u_prodavtsov"};
                       vk.request('wall.post', params, function(dat){
-                        bot.sendMessage(chatId, "👏Заявка добавлена☝️☝️☝️\nПосмотреть можно в группе👉 vk.com/podslushano_u_prodavtsov");
                       });
-                       fs.readdirSync(path).forEach(file => {
-                         fs.unlinkSync(path + file);
-                       })
                     });
                 });
+
+              })
+
+              vk.request('photos.getWallUploadServer', 167596361, function(data){
+                var url = data.response.upload_url;
+                const formData = {
+                    photo: fs.createReadStream(path+filename),
+                };
+
+                request.post({url, formData}, (error, httpResponse, body) => {
+                    if (error) {
+                        return console.error(error);
+                    }
+                    var resp = JSON.parse(body);
+
+                    var server = resp.server;
+                    var photo = resp.photo;
+                    var hash = resp.hash;
+
+                    var options = {'server': server, 'photo': photo, 'hash': hash};
+
+                    vk.request('photos.saveWallPhoto', options, function(ans){
+                      var photo_id = ans.response[0].id;
+                      var owner_id = ans.response[0].owner_id;
+
+                      var attachments = "photo"+owner_id+"_"+photo_id;
+
+                      var params = {'owner_id':-167596361, 'from_group': 1, 'attachments': attachments, 'message' : msg.caption + "\nОбращаться в Telegram: t.me/" + msg.from.username + " ✅📢\n" + "Наш чат в Telegrame: t.me/podslushano_u_prodavtsov"};
+                      vk.request('wall.post', params, function(dat){
+                        bot.sendMessage(chatId, "👏Заявка добавлена☝️☝️☝️\nПосмотреть можно в группах👉 \nvk.com/podslushano_u_prodavtsov\nvk.com/botdropsearch");
+                      });
+                      fs.readdirSync(path).forEach(file => {
+                        fs.unlinkSync(path + file);
+                      })
+                    });
+                });
+
               })
               //fs.unlinkSync(path+filename);
               
